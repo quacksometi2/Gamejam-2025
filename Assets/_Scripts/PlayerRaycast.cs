@@ -21,7 +21,7 @@ public class PlayerRaycast : MonoBehaviour
             {
                 if (hit.collider.CompareTag(targetTag))
                 {
-                    Debug.Log("Ramte: " + hit.collider.name);
+                    hit.collider.GetComponent<ButtonInfo>().ChooseButton();
                 }
             }
         }

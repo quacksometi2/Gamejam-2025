@@ -56,9 +56,7 @@ public class WallRunning : MonoBehaviour
     private void FixedUpdate()
     {
         if (mc.wallrunning)
-        {
             WallRunningMovement();
-        }
     }
 
     private void CheckForWall()
@@ -101,12 +99,10 @@ public class WallRunning : MonoBehaviour
                 StopWallRun();
 
             if (exitWallTimer > 0)
-            {
                 exitWallTimer -= Time.deltaTime;
 
-                if (exitWallTimer <= 0)
-                    exitingWall = false;
-            }
+            if (exitWallTimer <= 0)
+                exitingWall = false;
         }
 
         // State 3 - None
@@ -138,13 +134,13 @@ public class WallRunning : MonoBehaviour
 
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
-        if((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
             wallForward = -wallForward;
 
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
 
         if (!(wallLeft && horizontalInput > 0 ) && !(wallRight && horizontalInput < 0))
-        rb.AddForce(-wallNormal * 100, ForceMode.Force);  
+            rb.AddForce(-wallNormal * 100, ForceMode.Force);  
 
         if (useGravity)
             rb.AddForce(transform.up * gravityCounterForce, ForceMode.Force);

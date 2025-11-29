@@ -1,5 +1,6 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MoneyManager : MonoBehaviour
 {
@@ -25,11 +26,22 @@ public class MoneyManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 
     void Start()
     {
          MoneyText.text = "Money: "+playerMoney;
+         CheckForZeroMoneyAndEnd();
     }
 
     public bool CanISpendThis(int money)
@@ -64,5 +76,18 @@ public class MoneyManager : MonoBehaviour
     {
         print("Player current money: "+playerMoney);
         return playerMoney;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        CheckForZeroMoneyAndEnd();
+    }
+
+    private void CheckForZeroMoneyAndEnd()
+    {
+        if (playerMoney <= 0 && SceneManager.GetActiveScene().name != "EndScreen")
+        {
+            SceneManager.LoadScene("EndScreen");
+        }
     }
 }

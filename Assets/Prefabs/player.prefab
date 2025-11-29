@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 306324680608672161}
   - component: {fileID: 1552105365955586618}
   - component: {fileID: 6467604773221119678}
+  - component: {fileID: 5959135477446732790}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4964612620485865178}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.6279798, z: -0, w: 0.77822965}
+  m_LocalRotation: {x: 0, y: 0.62797666, z: 0, w: 0.77823216}
   m_LocalPosition: {x: 3.77, y: 4.62, z: 17.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -195,6 +196,24 @@ MonoBehaviour:
   landSound: {fileID: 0}
   wallRunLoop: {fileID: 0}
   isWallRunning: 0
+--- !u!114 &5959135477446732790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964612620485865178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610fddb6329c649cab9a00118848bc31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRaycast
+  rayOrigin: {fileID: 1775687901629531214}
+  rayLength: 3
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  targetTag: Interactable
 --- !u!1 &6197656169728108501
 GameObject:
   m_ObjectHideFlags: 0

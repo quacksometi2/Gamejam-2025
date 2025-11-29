@@ -1,3 +1,4 @@
+// PlayerFootsteps.cs
 using UnityEngine;
 
 public class PlayerFootsteps : MonoBehaviour
@@ -9,18 +10,18 @@ public class PlayerFootsteps : MonoBehaviour
     public AudioClip runLoop;
     public AudioClip jumpSound;
     public AudioClip landSound;
-    public AudioClip wallRunLoop;   // <-- ny lyd til wall run
+    public AudioClip wallRunLoop;
 
     private CharacterController controller;
     private bool wasGrounded;
     private bool hasJumped;
 
-    // Denne bool kan du sætte fra dit wall?running script
-    public bool isWallRunning;
+    private PlayerMovement playerMovement; // <-- reference til movement script
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        playerMovement = GetComponent<PlayerMovement>(); // henter samme komponent
         wasGrounded = controller.isGrounded;
         hasJumped = false;
     }
@@ -29,8 +30,8 @@ public class PlayerFootsteps : MonoBehaviour
     {
         bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
 
-        // Gå/Løb/Wall?run lyd
-        if (isWallRunning)
+        // Brug playerMovement.isWallRunning i stedet for egen bool
+        if (playerMovement != null && playerMovement.isWallRunning)
         {
             if (!footstepsSource.isPlaying || footstepsSource.clip != wallRunLoop)
             {
@@ -79,12 +80,9 @@ public class PlayerFootsteps : MonoBehaviour
 
     void PlayJump()
     {
-
-        print("PlayJump called");
         if (jumpSound != null && effectsSource != null)
         {
             effectsSource.PlayOneShot(jumpSound);
-            print("Jump sound played");
         }
     }
 
@@ -96,4 +94,3 @@ public class PlayerFootsteps : MonoBehaviour
         }
     }
 }
-    

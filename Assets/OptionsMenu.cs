@@ -14,11 +14,10 @@ public class MainMenuAndOptions : MonoBehaviour
     [Header("Options UI")]
     public Slider volumeSlider;
     public Slider sensitivitySlider;
-    public Text qualityLabel;
 
     void Start()
     {
-        // Load saved settings
+        // Load saved volume
         float vol = PlayerPrefs.GetFloat("Volume", 1f);
         AudioListener.volume = vol;
         if (volumeSlider != null)
@@ -27,16 +26,17 @@ public class MainMenuAndOptions : MonoBehaviour
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
 
-        float sens = PlayerPrefs.GetFloat("Sensitivity", 1f);
+        // Load saved sensitivity
+        float sens = PlayerPrefs.GetFloat("Sensitivity", 2f);
         if (sensitivitySlider != null)
         {
             sensitivitySlider.value = sens;
             sensitivitySlider.onValueChanged.AddListener(SetSensitivity);
         }
 
+        // Load saved quality level
         int quality = PlayerPrefs.GetInt("QualityLevel", QualitySettings.GetQualityLevel());
         QualitySettings.SetQualityLevel(quality, true);
-        UpdateQualityLabel();
 
         // Show main menu, hide options
         mainMenuCanvas.SetActive(true);
@@ -78,7 +78,10 @@ public class MainMenuAndOptions : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // Quality settings via buttons
     public void SetQualityLow() { SetQualityByIndex(0); }
+    public void SetQualityMedium() { SetQualityByIndex(2); }
+    public void SetQualityHigh() { SetQualityByIndex(4); }
     public void SetQualityUltra() { SetQualityByIndex(QualitySettings.names.Length - 1); }
 
     void SetQualityByIndex(int index)
@@ -86,15 +89,5 @@ public class MainMenuAndOptions : MonoBehaviour
         QualitySettings.SetQualityLevel(index, true);
         PlayerPrefs.SetInt("QualityLevel", index);
         PlayerPrefs.Save();
-        UpdateQualityLabel();
-    }
-
-    void UpdateQualityLabel()
-    {
-        if (qualityLabel != null)
-        {
-            int idx = QualitySettings.GetQualityLevel();
-            qualityLabel.text = "Quality: " + QualitySettings.names[idx];
-        }
     }
 }

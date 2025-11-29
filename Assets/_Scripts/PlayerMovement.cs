@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private bool isSprinting;
-    private bool isWallRunning;
+    public bool isWallRunning;
     private bool wallOnLeft;
     private bool wallOnRight;
 

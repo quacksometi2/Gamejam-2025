@@ -19,12 +19,16 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -20f;
     public float groundedGravity = -2f;
 
+    [Header("Double Jump")]
+    public int maxJumps = 2;       // antal hop tilladt (2 = double jump)
+    private int jumpCount = 0;     // tæller hop
+
     [Header("Wall Run")]
     public float wallRunSpeed = 9f;
     public float wallRunGravity = -5f;
     public float wallCheckDistance = 0.7f;
     public float wallRunDuration = 2.0f;
-    public float wallExitCooldown = 0.05f;   // kort cooldown så man kan hoppe fra mur til mur
+    public float wallExitCooldown = 0.05f;
     public LayerMask wallMask;
 
     [Header("Camera Tilt")]
@@ -39,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private bool isSprinting;
-    public bool isWallRunning;
+    public bool isWallRunning;   // gjort public så andre scripts kan læse det
     private bool wallOnLeft;
     private bool wallOnRight;
 
@@ -51,8 +55,6 @@ public class PlayerMovement : MonoBehaviour
     private InputAction sprintAction;
 
     private float tiltVelocity;
-
-    // Ny variabel til at huske sidste væg
     private Vector3 lastWallNormal;
 
     void Awake()
@@ -116,7 +118,8 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && velocity.y < 0f)
         {
             velocity.y = groundedGravity;
-            lastWallNormal = Vector3.zero; // reset når vi lander
+            jumpCount = 0; // nulstil hop når vi lander
+            lastWallNormal = Vector3.zero;
         }
     }
 
@@ -139,11 +142,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (WallCheck(out Vector3 wallNormal))
         {
-            // Blokér hvis det er samme væg som sidst
             if (Vector3.Dot(wallNormal, lastWallNormal) > 0.9f)
                 return false;
 
-            // Tillad lidt bevægelse ind mod væggen, men ikke direkte ind
             float dot = Vector3.Dot(inputDir, wallNormal);
             if (dot > -0.5f && dot < 0.3f)
                 return true;
@@ -197,24 +198,25 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (WallCheck(out Vector3 wallNormal))
                 {
-                    // Blokér hop hvis input peger direkte ind i væggen
                     if (Vector3.Dot(inputDir, wallNormal) > 0.4f)
                         return;
 
-                    // Hop væk fra væggen med reduceret opad kraft
                     Vector3 jumpDir = wallNormal * 1.5f + Vector3.up * 0.3f;
                     velocity = jumpDir.normalized * Mathf.Sqrt(2f * Mathf.Abs(gravity) * jumpHeight);
 
-                    lastWallNormal = wallNormal; // gem væggen vi hoppede fra
+                    lastWallNormal = wallNormal;
                     StopWallRun();
+                    jumpCount = 1; // tæller som første hop i luften
                 }
             }
             return;
         }
 
-        if (isGrounded && jumpAction.triggered)
+        // Double jump logik
+        if (jumpAction.triggered && jumpCount < maxJumps)
         {
             velocity.y = Mathf.Sqrt(2f * Mathf.Abs(gravity) * jumpHeight);
+            jumpCount++;
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -242,6 +244,3 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 }
-
-
-

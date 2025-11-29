@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
 bool runFinsishedLevelonce = false;
     public void FinishedLevel()
     {
+        levelStarted = false;
         if(!runFinsishedLevelonce)
         {
             runFinsishedLevelonce = true;

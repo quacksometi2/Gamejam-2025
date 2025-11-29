@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonInfo : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class ButtonInfo : MonoBehaviour
     [Header("Colors")]
     public Color redColor = Color.red;
     public Color greenColor = Color.green;
+
+    [Header("Type")]
+    public bool isEndButton;
 
     [Header("Target")]
     public Renderer targetRenderer;
@@ -60,18 +64,16 @@ public class ButtonInfo : MonoBehaviour
     public void ChooseButton()
     {
         if (!canChoose || isChosen) return;
-        
-        if(moneyManager.CanISpendThis(CostToBegin))
-        {
             isChosen = true;
             ApplyColor(greenColor);
-            gameManager.ChosenSettings(CostToBegin,TimeToBeat,MoneyWhenWon);
-        }
-        else
-        {
-            //You dont have the money
-            print("You dont have enough money");
-        }
+            print("End");
+
+            if (isEndButton)
+            {
+                SceneManager.LoadScene("EndScreen");
+                return;
+            }
+     
 
     }
 

@@ -16,7 +16,7 @@ public class EndTextMoneyEarnedDisplay : MonoBehaviour
 
         if (earnedText != null)
         {
-            earnedText.text = moneyManager.GetEarnedDuringRun().ToString();
+            earnedText.text = "You earned a total of: "+moneyManager.GetEarnedDuringRun().ToString();
         }
         else
         {

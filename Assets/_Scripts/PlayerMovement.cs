@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Double Jump")]
     public int maxJumps = 2;
     private int jumpCount = 0;
-    public bool hasDoubleJump = false; // aktiveres når man samler cuben op
+    public bool hasDoubleJump = false;
 
     [Header("Wall Run")]
     public float wallRunSpeed = 9f;
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform;
     public float maxTilt = 12f;
     public float tiltSpeed = 6f;
-    public CameraFollow cameraFollow; // drag dit kamera med CameraFollow script her
+    public CameraFollow cameraFollow;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -238,5 +238,12 @@ public class PlayerMovement : MonoBehaviour
         {
             cameraFollow.SetTilt(wallOnLeft, wallOnRight);
         }
+    }
+
+    // 🧨 JumpPad support
+    public void ApplyJumpPadBoost(Vector3 boost)
+    {
+        velocity = new Vector3(velocity.x, 0f, velocity.z);
+        velocity += boost;
     }
 }

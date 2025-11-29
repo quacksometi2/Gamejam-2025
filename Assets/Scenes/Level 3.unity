@@ -2353,8 +2353,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.035}
---- !u!65 &207320484
-BoxCollider:
+--- !u!64 &207320484
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2371,9 +2371,10 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 46.196804, y: 5.467912, z: 55.253746}
-  m_Center: {x: 6.8927054, y: -2.233956, z: 2.3736696}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1118840955}
 --- !u!1 &224031765
 GameObject:
   m_ObjectHideFlags: 0

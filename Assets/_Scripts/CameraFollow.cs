@@ -1,15 +1,15 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MouseLook : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
     [Header("References")]
     public Transform playerBody;               // Den del af spilleren der skal rotere horisontalt
-    public InputActionReference lookAction;    // Input Action til musens bevægelse
+    public InputActionReference lookAction;    // Input Action til musens bevÃ¦gelse
 
     [Header("Settings")]
-    public float sensitivity = 2f;             // Standard følsomhed (bruges hvis intet er gemt)
-    public float minSensitivity = 0.1f;        // Minimum følsomhed (forhindrer 0)
+    public float sensitivity = 2f;             // Standard fÃ¸lsomhed (bruges hvis intet er gemt)
+    public float minSensitivity = 0.1f;        // Minimum fÃ¸lsomhed (forhindrer 0)
 
     private float xRotation = 0f;
 
@@ -18,10 +18,10 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        // Hent gemt følsomhed fra PlayerPrefs (default = 2f)
+        // Hent gemt fÃ¸lsomhed fra PlayerPrefs (default = 2f)
         sensitivity = PlayerPrefs.GetFloat("Sensitivity", 2f);
 
-        // Clamp så den aldrig bliver 0 eller negativ
+        // Clamp sÃ¥ den aldrig bliver 0 eller negativ
         if (sensitivity < minSensitivity)
             sensitivity = minSensitivity;
     }
@@ -44,7 +44,7 @@ public class MouseLook : MonoBehaviour
         }
     }
 
-    // Bruges hvis du vil ændre følsomheden live fra options-menuen
+    // Bruges hvis du vil Ã¦ndre fÃ¸lsomheden live fra options-menuen
     public void ApplySensitivity(float value)
     {
         if (value < minSensitivity)
@@ -53,5 +53,6 @@ public class MouseLook : MonoBehaviour
         sensitivity = value;
         PlayerPrefs.SetFloat("Sensitivity", value);
         PlayerPrefs.Save();
+
     }
 }

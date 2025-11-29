@@ -9,6 +9,8 @@ public class MoneyManager : MonoBehaviour
 
     public TextMeshProUGUI MoneyText;
 
+    private int EarnedDuringTheCourseOfGame;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,7 +44,16 @@ public class MoneyManager : MonoBehaviour
     {
         playerMoney += change;
         MoneyText.text = "Money: "+playerMoney;
+        if(change > 0)
+        {
+        EarnedDuringTheCourseOfGame += change;
+        }
 
+    }
+
+    public int GetEarnedDuringRun()
+    {
+        return EarnedDuringTheCourseOfGame;
     }
 
     public int GetPlayerMoney()

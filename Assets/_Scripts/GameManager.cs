@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
         }
 
         moneyManager = GameObject.FindAnyObjectByType<MoneyManager>();
+        if(moneyManager == null)
+        {
+            Debug.LogError("There's no money manager");
+        }
 
     }
 

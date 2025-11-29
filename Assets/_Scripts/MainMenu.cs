@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [Header("Scene Settings")]
-    [Tooltip("Navnet på den scene der skal loades når man trykker Play")]
-    public string sceneToLoad = "Level1";  // Sæt navnet i Inspector
+    [Tooltip("Navnet pï¿½ den scene der skal loades nï¿½r man trykker Play")]
+    public string sceneToLoad = "hub";  // Sï¿½t navnet i Inspector
 
     [Header("UI Panels")]
     public GameObject optionsPanel;  // Drag dit options-panel her

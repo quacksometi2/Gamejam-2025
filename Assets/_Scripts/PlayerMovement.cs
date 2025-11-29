@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Double Jump")]
     public int maxJumps = 2;
     private int jumpCount = 0;
-    public bool hasDoubleJump = false; // 👈 kun aktiv når man har rørt cuben
+    public bool hasDoubleJump = false; // aktiveres når man samler cuben op
 
     [Header("Wall Run")]
     public float wallRunSpeed = 9f;
@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform;
     public float maxTilt = 12f;
     public float tiltSpeed = 6f;
+    public CameraFollow cameraFollow; // drag dit kamera med CameraFollow script her
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -70,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveAction == null || jumpAction == null || sprintAction == null)
         {
             enabled = false;
+            Debug.LogError("PlayerMovement: Mangler InputActionReferences i Inspector.");
             return;
         }
     }
@@ -232,23 +234,9 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyCameraTilt()
     {
-        if (!cameraTransform) return;
-
-        float targetTilt = 0f;
-        if (isWallRunning)
+        if (cameraFollow != null)
         {
-            if (wallOnLeft) targetTilt = -maxTilt;
-            else if (wallOnRight) targetTilt = maxTilt;
+            cameraFollow.SetTilt(wallOnLeft, wallOnRight);
         }
-
-        float currentZ = cameraTransform.localEulerAngles.z;
-        if (currentZ > 180f) currentZ -= 360f;
-
-        float newZ = Mathf.SmoothDampAngle(currentZ, targetTilt, ref tiltVelocity, 1f / tiltSpeed);
-        cameraTransform.localEulerAngles = new Vector3(
-            cameraTransform.localEulerAngles.x,
-            cameraTransform.localEulerAngles.y,
-            newZ
-        );
     }
 }

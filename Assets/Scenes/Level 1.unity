@@ -567,6 +567,11 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &88084137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8737103819177608265, guid: cbe60b980d5e64b9f916e2e0604ed8ef, type: 3}
+  m_PrefabInstance: {fileID: 406382973554350471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &109903517
 Mesh:
   m_ObjectHideFlags: 0
@@ -29409,6 +29414,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 556527559}
     m_Modifications:
+    - target: {fileID: 923702596130146741, guid: cbe60b980d5e64b9f916e2e0604ed8ef, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 685335998}
     - target: {fileID: 8713173984156955241, guid: cbe60b980d5e64b9f916e2e0604ed8ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.303
@@ -29453,10 +29462,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GiveUpButton
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 923702596130146741, guid: cbe60b980d5e64b9f916e2e0604ed8ef, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8737103819177608265, guid: cbe60b980d5e64b9f916e2e0604ed8ef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1840684874441159388}
     - targetCorrespondingSourceObject: {fileID: 1405612390343849466, guid: cbe60b980d5e64b9f916e2e0604ed8ef, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -29466,6 +29479,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8713173984156955241, guid: cbe60b980d5e64b9f916e2e0604ed8ef, type: 3}
   m_PrefabInstance: {fileID: 406382973554350471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1840684874441159388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88084137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 425cdca9867c549c090999960448852f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonInfo
+  TimeToBeat: 30
+  CostToBegin: 100
+  MoneyWhenWon: 150
+  gameManager: {fileID: 0}
+  redColor: {r: 1, g: 0, b: 0, a: 1}
+  greenColor: {r: 0, g: 1, b: 0, a: 1}
+  isEndButton: 1
+  targetRenderer: {fileID: 0}
+  ButtonText: {fileID: 0}
 --- !u!1001 &2351055552082191903
 PrefabInstance:
   m_ObjectHideFlags: 0

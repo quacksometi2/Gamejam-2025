@@ -3321,8 +3321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eb6b3680078d048977f13c5ed51672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  sceneToLoad: hub
-  optionsPanel: {fileID: 0}
+  sceneToLoad: Real Hub
+  optionsPanel: {fileID: 1143466482}
 --- !u!4 &1790116993
 Transform:
   m_ObjectHideFlags: 0

@@ -13,14 +13,18 @@ public class MoneyManager : MonoBehaviour
 
     private void Awake()
     {
+        // Keep the very first MoneyManager alive; destroy later duplicates that sneak in.
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // Fail-safe to avoid duplicate persistent managers
+            Destroy(gameObject);
             return;
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Start()

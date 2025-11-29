@@ -107,7 +107,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425cdca9867c549c090999960448852f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  TimeToBeat: 30
-  CostToBegin: 100
-  MoneyWhenWon: 150
+  TimeToBeat: 60
+  CostToBegin: 0
+  MoneyWhenWon: 100
   gameManager: {fileID: 0}
   redColor: {r: 1, g: 0, b: 0, a: 1}
   greenColor: {r: 0, g: 1, b: 0, a: 1}

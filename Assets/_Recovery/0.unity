@@ -11820,7 +11820,19 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1947562590}
+        m_TargetAssemblyTypeName: PouseManger, Assembly-CSharp
+        m_MethodName: SetGraphicsLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1075535795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27627,6 +27639,14 @@ PrefabInstance:
       propertyPath: graphicsDropdown
       value: 
       objectReference: {fileID: 921279920}
+    - target: {fileID: 1552105365955586618, guid: cfb809686db369644ae93e2511e6dcd9, type: 3}
+      propertyPath: maxTilt
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552105365955586618, guid: cfb809686db369644ae93e2511e6dcd9, type: 3}
+      propertyPath: tiltSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1775687901629531214, guid: cfb809686db369644ae93e2511e6dcd9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.77

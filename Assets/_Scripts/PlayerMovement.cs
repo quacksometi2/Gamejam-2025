@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -20,8 +20,9 @@ public class PlayerMovement : MonoBehaviour
     public float groundedGravity = -2f;
 
     [Header("Double Jump")]
-    public int maxJumps = 2;       // antal hop tilladt (2 = double jump)
-    private int jumpCount = 0;     // tæller hop
+    public int maxJumps = 2;
+    private int jumpCount = 0;
+    public bool hasDoubleJump = false; // ðŸ‘ˆ kun aktiv nÃ¥r man har rÃ¸rt cuben
 
     [Header("Wall Run")]
     public float wallRunSpeed = 9f;
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private bool isSprinting;
-    public bool isWallRunning;   // gjort public så andre scripts kan læse det
+    public bool isWallRunning;
     private bool wallOnLeft;
     private bool wallOnRight;
 
@@ -62,9 +63,9 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         currentSpeed = walkSpeed;
 
-        moveAction = moveRef ? moveRef.action : null;
-        jumpAction = jumpRef ? jumpRef.action : null;
-        sprintAction = sprintRef ? sprintRef.action : null;
+        moveAction = moveRef?.action;
+        jumpAction = jumpRef?.action;
+        sprintAction = sprintRef?.action;
 
         if (moveAction == null || jumpAction == null || sprintAction == null)
         {
@@ -118,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && velocity.y < 0f)
         {
             velocity.y = groundedGravity;
-            jumpCount = 0; // nulstil hop når vi lander
+            jumpCount = 0;
             lastWallNormal = Vector3.zero;
         }
     }
@@ -206,17 +207,24 @@ public class PlayerMovement : MonoBehaviour
 
                     lastWallNormal = wallNormal;
                     StopWallRun();
-                    jumpCount = 1; // tæller som første hop i luften
+                    jumpCount = 1;
                 }
             }
             return;
         }
 
-        // Double jump logik
-        if (jumpAction.triggered && jumpCount < maxJumps)
+        if (jumpAction.triggered)
         {
-            velocity.y = Mathf.Sqrt(2f * Mathf.Abs(gravity) * jumpHeight);
-            jumpCount++;
+            if (jumpCount == 0)
+            {
+                velocity.y = Mathf.Sqrt(2f * Mathf.Abs(gravity) * jumpHeight);
+                jumpCount++;
+            }
+            else if (jumpCount == 1 && hasDoubleJump)
+            {
+                velocity.y = Mathf.Sqrt(2f * Mathf.Abs(gravity) * jumpHeight);
+                jumpCount++;
+            }
         }
 
         velocity.y += gravity * Time.deltaTime;

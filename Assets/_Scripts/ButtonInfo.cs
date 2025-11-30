@@ -67,14 +67,24 @@ public class ButtonInfo : MonoBehaviour
             isChosen = true;
             ApplyColor(greenColor);
             print("End");
-
+     
             if (isEndButton)
             {
                 SceneManager.LoadScene("EndScreen");
                 return;
             }
-     
 
+        else
+        {
+            if (moneyManager != null && moneyManager.CanISpendThis(CostToBegin))
+            {
+                gameManager.ChosenSettings(CostToBegin, TimeToBeat, MoneyWhenWon);
+            }
+            else
+            {
+                
+            }
+        }
     }
 
     public void DisableSelection()

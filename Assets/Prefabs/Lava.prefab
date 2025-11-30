@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4494882410914261802
+--- !u!1 &2684098667443235081
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7755998899876396997}
-  - component: {fileID: 4582770721515815442}
-  - component: {fileID: 3630553916258196947}
-  - component: {fileID: 5888571040379118174}
-  - component: {fileID: 2899725406293128117}
-  - component: {fileID: 6209674661330783101}
-  - component: {fileID: 36131835224837448}
+  - component: {fileID: 894894743966765946}
+  - component: {fileID: 7370337307833866906}
+  - component: {fileID: 212370038367352139}
+  - component: {fileID: 1886117228045920181}
+  - component: {fileID: 2838364017212372099}
+  - component: {fileID: 8164147960787232387}
+  - component: {fileID: 2305864076566543878}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Lava
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7755998899876396997
+--- !u!4 &894894743966765946
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494882410914261802}
+  m_GameObject: {fileID: 2684098667443235081}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.035203133, w: 0.99938023}
-  m_LocalPosition: {x: -23.61, y: 1.72, z: -18}
+  m_LocalPosition: {x: 38.24, y: 1.72, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.035}
---- !u!114 &4582770721515815442
+--- !u!114 &7370337307833866906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494882410914261802}
+  m_GameObject: {fileID: 2684098667443235081}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -254,13 +254,13 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!114 &3630553916258196947
+--- !u!114 &212370038367352139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494882410914261802}
+  m_GameObject: {fileID: 2684098667443235081}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ca002da428252441b92f28d83c8a65f, type: 3}
@@ -278,13 +278,13 @@ MonoBehaviour:
     - rid: 5964828161814560831
       type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
       data: 
---- !u!23 &5888571040379118174
+--- !u!23 &1886117228045920181
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494882410914261802}
+  m_GameObject: {fileID: 2684098667443235081}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -326,21 +326,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &2899725406293128117
+--- !u!33 &2838364017212372099
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494882410914261802}
+  m_GameObject: {fileID: 2684098667443235081}
   m_Mesh: {fileID: 0}
---- !u!114 &6209674661330783101
+--- !u!114 &8164147960787232387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494882410914261802}
+  m_GameObject: {fileID: 2684098667443235081}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 907da9dc227479b46bb167d49c7d75fc, type: 3}
@@ -349,13 +349,13 @@ MonoBehaviour:
   lavaAudio: {fileID: 0}
   behavioursToDisable: []
   restartDelay: 2
---- !u!65 &36131835224837448
-BoxCollider:
+--- !u!64 &2305864076566543878
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494882410914261802}
+  m_GameObject: {fileID: 2684098667443235081}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -367,6 +367,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 46.196804, y: 5.467912, z: 55.253746}
-  m_Center: {x: 6.8927054, y: -2.233956, z: 2.3736696}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

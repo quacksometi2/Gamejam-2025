@@ -2,14 +2,34 @@ using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour
 {
-    public GameObject cubePrefab;     // Drag din kube prefab ind i Inspector
-    public Transform spawnPoint;      // Hvor kuben skal dukke op
+    public GameObject boss;
+    public Transform spawnPoint;
+    public bool spawnOnce = true;
+    private bool hasSpawned = false;
+
+    // Tilføj en AudioSource reference
+    public AudioSource audioSource;
+    public AudioClip bossMusic;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Sørg for at din spiller har tag "Player"
+        Debug.Log("Trigger entered by: " + other.name);
+
+        if (other.CompareTag("Player") && !hasSpawned)
         {
-            Instantiate(cubePrefab, spawnPoint.position, Quaternion.identity);
+            boss.SetActive(true);
+
+            // Spil musik
+            if (audioSource != null && bossMusic != null)
+            {
+                audioSource.clip = bossMusic;
+                audioSource.Play();
+            }
+
+            if (spawnOnce)
+            {
+                hasSpawned = true;
+            }
         }
     }
 }

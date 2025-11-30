@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI; // Bruges til UI.Text
 
 public class DoubleJumpPaetices : MonoBehaviour
 {
     [Header("Pickup Settings")]
-    public GameObject pickupParticles;     // Træk dit particle prefab ind her
-    public AudioClip pickupSound;          // Træk dit lydklip ind her
-    public float soundVolume = 1f;         // Justér lydstyrke
+    public GameObject pickupParticles;
+    public AudioClip pickupSound;
+    public float soundVolume = 1f;
+
+    [Header("UI Settings")]
+    public Text pickupText;            // Drag dit Text-element ind her
+    public float displayDuration = 2f; // Hvor længe teksten skal vises
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,9 +32,23 @@ public class DoubleJumpPaetices : MonoBehaviour
                 AudioSource.PlayClipAtPoint(pickupSound, transform.position, soundVolume);
             }
 
+            // Aktiver dit eksisterende Text-objekt
+            if (pickupText != null)
+            {
+                pickupText.gameObject.SetActive(true);
+                Invoke(nameof(HideText), displayDuration);
+            }
+
             // Fjern cuben
             Destroy(gameObject);
         }
     }
-}
 
+    private void HideText()
+    {
+        if (pickupText != null)
+        {
+            pickupText.gameObject.SetActive(false);
+        }
+    }
+}

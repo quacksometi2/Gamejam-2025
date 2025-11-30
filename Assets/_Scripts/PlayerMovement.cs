@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -59,10 +60,19 @@ public class PlayerMovement : MonoBehaviour
     private float tiltVelocity;
     private Vector3 lastWallNormal;
 
+    // Speed-boost bookkeeping
+    private float baseWalkSpeed;
+    private float baseSprintSpeed;
+    private Coroutine speedBoostCoroutine;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
         currentSpeed = walkSpeed;
+
+        // store base speeds for temporary modifiers
+        baseWalkSpeed = walkSpeed;
+        baseSprintSpeed = sprintSpeed;
 
         moveAction = moveRef?.action;
         jumpAction = jumpRef?.action;
@@ -245,5 +255,29 @@ public class PlayerMovement : MonoBehaviour
     {
         velocity = new Vector3(velocity.x, 0f, velocity.z);
         velocity += boost;
+    }
+
+    // Public API to apply a temporary speed boost (multiplies walk/sprint speeds)
+    public void ApplySpeedBoost(float multiplier, float duration)
+    {
+        if (speedBoostCoroutine != null)
+        {
+            StopCoroutine(speedBoostCoroutine);
+            // ensure we reset before applying new boost
+            walkSpeed = baseWalkSpeed;
+            sprintSpeed = baseSprintSpeed;
+            speedBoostCoroutine = null;
+        }
+        speedBoostCoroutine = StartCoroutine(SpeedBoostCoroutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedBoostCoroutine(float multiplier, float duration)
+    {
+        walkSpeed = baseWalkSpeed * multiplier;
+        sprintSpeed = baseSprintSpeed * multiplier;
+        yield return new WaitForSeconds(duration);
+        walkSpeed = baseWalkSpeed;
+        sprintSpeed = baseSprintSpeed;
+        speedBoostCoroutine = null;
     }
 }
